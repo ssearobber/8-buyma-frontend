@@ -98,7 +98,7 @@ const Product = () => {
             <Chart
             width={'100%'}
             height={'90vh'}
-            chartType="Line"
+            chartType="Bar"
             data={productInfo}
             loader={<div>Loading Chart</div>}
             options={{
