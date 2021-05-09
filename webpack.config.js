@@ -68,7 +68,8 @@ const config = {
     publicPath: '/dist/',
     proxy: {
       '/api/': {
-        target: 'http://localhost:3095',
+        target: 'https://buyma-backend.herokuapp.com',
+        // target: 'http://localhost:3095',
         changeOrigin: true,
       },
     },
