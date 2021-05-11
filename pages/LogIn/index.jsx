@@ -62,7 +62,7 @@ const LogIn = () => {
       </Form>
       <LinkContainer>
         まだ会員ではないですか?&nbsp;
-        <a href="/signup">会員登録しに行く。</a>
+        <a href="/signup" style={{pointerEvents : "none"}}>会員登録しに行く。</a>
       </LinkContainer>
     </div>
   );
