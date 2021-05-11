@@ -34,7 +34,8 @@ const LogIn = () => {
     [email, password],
   );
 
-  console.log(error, userData);
+  console.log("userData", userData);
+  console.log("error", error);
   if (!error && userData) {
     console.log('ログイン', userData);
     return <Redirect to="/products" />;
