@@ -2,7 +2,7 @@
   "name": "buyma-frontend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "client.js",
   "scripts": {
     "dev": "cross-env webpack serve --env development",
     "build": "cross-env NODE_ENV=production webpack",

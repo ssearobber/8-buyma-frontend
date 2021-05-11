@@ -2,10 +2,10 @@ import loadable from '@loadable/component';
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-const Products = loadable(() => import('@layouts/Products'));
-const Product = loadable(() => import('@layouts/Product'));
-const LogIn = loadable(() => import('@pages/LogIn'));
-const SignUp = loadable(() => import('@pages/SignUp'));
+// const Products = loadable(() => import('@layouts/Products'));
+// const Product = loadable(() => import('@layouts/Product'));
+// const LogIn = loadable(() => import('@pages/LogIn'));
+// const SignUp = loadable(() => import('@pages/SignUp'));
 
 const App = () => (
   <Switch>
