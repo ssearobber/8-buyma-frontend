@@ -52,7 +52,7 @@ const Products = () => {
   }
 
   return (
-    <div>
+    <div id="container">
       <Header>
         {userData && (
           <RightMenu>
