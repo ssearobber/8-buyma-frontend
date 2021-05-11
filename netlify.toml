@@ -15,6 +15,6 @@
 
 [[headers]]
   # Define which paths this specific [[headers]] block will cover.
-  for = "/*"
+  for = "/signup""
     [headers.values]
     Access-Control-Allow-Origin = "*"
