@@ -2,5 +2,3 @@
   from = "/"
   to = "https://relaxed-northcutt-53ebbd.netlify.app/"
   status = 200
-  force = true # COMMENT: ensure that we always redirect
-  headers = {X-From = "Netlify"}
