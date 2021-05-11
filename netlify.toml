@@ -1,0 +1,6 @@
+[[redirects]]
+  from = "/login"
+  to = "/products"
+  status = 200
+  force = false
+  conditions = {Language = ["en","es"], Country = ["US"]}
