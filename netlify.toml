@@ -1,6 +1,4 @@
 [[redirects]]
-  from = "/login"
-  to = "/products"
+  from = "https://relaxed-northcutt-53ebbd.netlify.app/login"
+  to = "https://relaxed-northcutt-53ebbd.netlify.app/products"
   status = 200
-  force = false
-  conditions = {Language = ["en","es"], Country = ["US"]}
