@@ -12,9 +12,3 @@
   from = "/signup"
   to = "https://relaxed-northcutt-53ebbd.netlify.app/signup"
   status = 200
-
-[[headers]]
-  # Define which paths this specific [[headers]] block will cover.
-  for = "/signup""
-    [headers.values]
-    Access-Control-Allow-Origin = "*"
