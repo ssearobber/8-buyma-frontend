@@ -1,9 +1,4 @@
 [[redirects]]
   from = "/"
-  to = "https://relaxed-northcutt-53ebbd.netlify.app/"
-  status = 200
-
-[[redirects]]
-  from = "https://relaxed-northcutt-53ebbd.netlify.app/login"
-  to = "https://relaxed-northcutt-53ebbd.netlify.app/products"
+  to = "https://relaxed-northcutt-53ebbd.netlify.app"
   status = 200
