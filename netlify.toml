@@ -2,3 +2,8 @@
   from = "/login"
   to = "https://relaxed-northcutt-53ebbd.netlify.app/"
   status = 200
+
+  [[redirects]]
+  from = "/signup"
+  to = "https://relaxed-northcutt-53ebbd.netlify.app/signup"
+  status = 200
