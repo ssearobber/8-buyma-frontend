@@ -1,4 +1,4 @@
 [[redirects]]
-  from = "/"
+  from = "/login"
   to = "https://relaxed-northcutt-53ebbd.netlify.app/"
   status = 200
