@@ -7,7 +7,7 @@ import { Redirect } from 'react-router-dom';
 import useSWR from 'swr';
 
 const LogIn = () => {
-  const { data: userData, error, revalidate } = useSWR('/api/users', fetcher);
+  const { data: userData, error, revalidate } = useSWR('https://buyma-backend.herokuapp.com/api/users', fetcher);
   const [logInError, setLogInError] = useState(false);
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
