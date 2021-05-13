@@ -23,7 +23,6 @@ const Products = () => {
   const { data: userData, error: loginError, revalidate: revalidateUser } = useSWR('/api/users', fetcher);
   const { data: products, error: productsError} = useSWR('/api/products', fetcher);
   const [showUserMenu, setShowUserMenu] = useState(false);
-  let theDayBeforeYesterday = dayjs().subtract(7, 'day').format("YYYY-MM-DD");
 
   const onLogOut = useCallback(() => {
     axios
@@ -75,9 +74,9 @@ const Products = () => {
         )}
       </Header>
       <Product>
-        {products?.map((t)=>{
-          const latest = dayjs(t.today).format('YYYY-MM-DD');
-          if (theDayBeforeYesterday < latest) return (<Link key={t.productId} to={`/product/${t.productId}`} style={{ textDecoration: 'none' }}><div>{t.productId} {t.productName}</div></Link>);
+        {products?.map((p)=>{
+          const latest = dayjs(p.today).format('YYYY-MM-DD');
+          return <Link key={p.productId} to={`/product/${p.productId}`} style={{ textDecoration: 'none' }}><div>{p.productId} {p.productName} {latest} {p.cart} {p.wish} {p.access}</div></Link>;
         })}
       </Product>
       <ToastContainer t="bottom-center" />
