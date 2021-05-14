@@ -17,7 +17,6 @@ const config = {
       '@layouts': path.resolve(__dirname, 'layouts'),
       '@pages': path.resolve(__dirname, 'pages'),
       '@utils': path.resolve(__dirname, 'utils'),
-      // '@typings': path.resolve(__dirname, 'typings'),
     },
   },
   entry: {
@@ -33,7 +32,7 @@ const config = {
             [
               '@babel/preset-env',
               {
-                targets: { browsers: ['last 2 chrome versions'] },
+                targets: { browsers: ['last 2 chrome versions','Safari >= 10.1'] },
                 debug: isDevelopment,
               },
             ],

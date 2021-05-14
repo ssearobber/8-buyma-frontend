@@ -1,5 +1,4 @@
 import Menu from '@components/Menu';
-import useInput from '@hooks/useInput';
 import fetcher from '@utils/fetcher';
 import axios from 'axios';
 import gravatar from 'gravatar';
@@ -40,15 +39,10 @@ const Products = () => {
     setShowUserMenu((prev) => !prev);
   }, []);
 
-  useEffect(() => {
-    return () => {
-      // setTodayData(todayData);
-    };
-  }, []);
-
   if (loginError || !userData) {
     return <Redirect to="/login" />;
   }
+  if (products == undefined) return <div>loading...</div>
 
   return (
     <div id="container">

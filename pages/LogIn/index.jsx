@@ -36,6 +36,9 @@ const LogIn = () => {
 
   console.log("userData", userData);
   console.log("error", error);
+
+  if (userData == undefined) return <div>loading...</div>
+
   if (!error && userData) {
     console.log('ログイン', userData);
     return <Redirect to="/products" />;
