@@ -70,6 +70,9 @@ const Product = () => {
     return <Redirect to="/login" />;
   }
 
+  if (productError) return <div>failed to load</div>
+  // if (product == undefined) return <div>loading...</div>
+
   return (
     <div>
       <Header>

@@ -42,6 +42,8 @@ const Products = () => {
   if (loginError || !userData) {
     return <Redirect to="/login" />;
   }
+
+  if (productsError) return <div>failed to load</div>
   if (products == undefined) return <div>loading...</div>
 
   return (
