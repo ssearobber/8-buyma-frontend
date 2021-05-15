@@ -48,7 +48,7 @@ const Product = () => {
         for (let i = 0 ; i < product.length ; i ++) {
             let result_array = [];
             Object.keys(product[i]).map(function (key) {
-                if (key == "productId" || key == "productName") {
+                if (key == "productId" || key == "productName" || key == "link") {
                     return;
                 }
                 if (key == "today") {
@@ -65,6 +65,8 @@ const Product = () => {
         setProductInfo(pre => [...pre,...productArray]);
     }
   }, [product]);
+
+  console.log("product",product);
 
   if (loginError || !userData) {
     return <Redirect to="/login" />;
@@ -98,20 +100,23 @@ const Product = () => {
       </Header>
       {productInfo.length != [] && product && (
         <div style={{ padding: '15px'}}>
-            <Chart
-            width={'100%'}
-            height={'90vh'}
-            chartType="Bar"
-            data={productInfo}
-            loader={<div>Loading Chart</div>}
-            options={{
-                chart: {
-                title: `${product[0].productName}`,
-                subtitle: `${product[0].productId}`,
-                },
-            }}
-            rootProps={{ 'data-testid': `${productInfo.length}` }}
-            />
+          <button onClick={() => window.open(`${product[7].link}`, '_blank')}>go to buyma</button>
+          <div>
+              <Chart
+              width={'100%'}
+              height={'90vh'}
+              chartType="Bar"
+              data={productInfo}
+              loader={<div>Loading Chart</div>}
+              options={{
+                  chart: {
+                  title: `${product[0].productName}`,
+                  subtitle: `${product[0].productId}`,
+                  },
+              }}
+              rootProps={{ 'data-testid': `${productInfo.length}` }}
+              />
+          </div>
         </div>)}
       <ToastContainer t="bottom-center" />
     </div>
