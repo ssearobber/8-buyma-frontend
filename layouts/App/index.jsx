@@ -1,6 +1,7 @@
 import loadable from '@loadable/component';
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import 'antd/dist/antd.css';
 
 const Products = loadable(() => import('@layouts/Products'));
 const Product = loadable(() => import('@layouts/Product'));

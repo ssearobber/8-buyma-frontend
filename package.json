@@ -11,10 +11,12 @@
   "author": "LJW",
   "license": "MIT",
   "dependencies": {
+    "@ant-design/icons": "^4.6.2",
     "@emotion/babel-plugin": "^11.1.2",
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
     "@loadable/component": "^5.14.1",
+    "antd": "^4.15.5",
     "axios": "^0.21.1",
     "cross-env": "^7.0.3",
     "dayjs": "^1.10.4",

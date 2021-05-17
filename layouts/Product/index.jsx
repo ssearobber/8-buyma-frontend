@@ -1,4 +1,5 @@
 import Menu from '@components/Menu';
+import CommentForm from '@components/CommentForm';
 import fetcher from '@utils/fetcher';
 import axios from 'axios';
 import gravatar from 'gravatar';
@@ -10,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import useSWR from 'swr';
 import dayjs from 'dayjs';
 import { Chart } from 'react-google-charts';
+import { Button, List, Comment } from 'antd';
 
 import {
   Header,
@@ -17,6 +19,7 @@ import {
   ProfileImg,
   ProfileModal,
   RightMenu,
+  Container
 } from './styles';
 
 const Product = () => {
@@ -99,9 +102,8 @@ const Product = () => {
         )}
       </Header>
       {productInfo.length != [] && product && (
-        <div style={{ padding: '15px'}}>
-          <button onClick={() => window.open(`${product[7].link}`, '_blank')}>go to buyma</button>
-          <div>
+        <Container>
+          <Button type="primary" onClick={() => window.open(`${product[7].link}`, '_blank')}>go to buyma</Button>
               <Chart
               width={'100%'}
               height={'90vh'}
@@ -116,8 +118,27 @@ const Product = () => {
               }}
               rootProps={{ 'data-testid': `${productInfo.length}` }}
               />
+          <div>
+            {/* <CommentForm >
+              <List
+                header={`${post.Comments.length}個の更新`}
+                itemLayout="horizontal"
+                dataSource={post.Comments}
+                renderItem={(item) => {
+                  <li>
+                    <Comment
+                      author={item.User.nickname} 
+
+                    />
+
+                  </li>
+                }}
+              >
+                
+              </List>
+            </CommentForm> */}
           </div>
-        </div>)}
+        </Container>)}
       <ToastContainer t="bottom-center" />
     </div>
   );
