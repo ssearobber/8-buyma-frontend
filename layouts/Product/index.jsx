@@ -1,5 +1,4 @@
 import Menu from '@components/Menu';
-import CommentForm from '@components/CommentForm';
 import fetcher from '@utils/fetcher';
 import axios from 'axios';
 import gravatar from 'gravatar';
@@ -11,7 +10,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import useSWR from 'swr';
 import dayjs from 'dayjs';
 import { Chart } from 'react-google-charts';
-import { Button, List, Comment } from 'antd';
+import { Button, List, Comment, Form, Input, Avatar } from 'antd';
+const { TextArea } = Input;
 
 import {
   Header,
@@ -27,9 +27,14 @@ const Product = () => {
     const { productId } = params;
     const { data: userData, error: loginError, revalidate: revalidateUser } = useSWR('/api/users', fetcher);
     const { data: product, error: productError} = useSWR(`/api/product/${productId}`, fetcher);
+    const { data: commentData, error, revalidate: revalidateComment } = useSWR(`/api/comments/${productId}`, fetcher);
     const [showUserMenu, setShowUserMenu] = useState(false);
     let [productInfo, setProductInfo] = useState([['Day','cart','wish','access']]);
     let productArray = [];
+    
+    const [comments, setComments] = useState([]);
+    const [submitting, setSubmitting] = useState(false);
+    const [value, setValue] = useState('');
     
     const onLogOut = useCallback(() => {
         axios
@@ -63,74 +68,101 @@ const Product = () => {
             productArray.push(result_array);
         }
     }
-  useEffect(() => {
-    if (product) {
-        setProductInfo(pre => [...pre,...productArray]);
+    useEffect(() => {
+      if (product) {
+          setProductInfo(pre => [...pre,...productArray]);
+      }
+    }, [product]);
+    useEffect(() => {
+      if (commentData?.length > 0) {
+          console.log("commentData1", commentData);
+          console.log("productId1", productId);
+          console.log("comments1", comments);
+          setComments(commentData);
+          console.log("commentData3", commentData);
+          console.log("productId3", productId);
+          console.log("comments3", comments);
+      }
+    }, [commentData]);
+    console.log("commentData2", commentData);
+    console.log("productId2", productId);
+    console.log("comments2", comments);
+
+    if (loginError || !userData) {
+      return <Redirect to="/login" />;
     }
-  }, [product]);
 
-  console.log("product",product);
+    if (productError) return <div>failed to load</div>
+    // if (product == undefined) return <div>loading...</div>
 
-  if (loginError || !userData) {
-    return <Redirect to="/login" />;
-  }
+    const CommentList = ({ comments }) => (
+    <List
+      dataSource={comments}
+      header={`${comments?.length} ${comments?.length > 1 ? 'replies' : 'reply'}`}
+      itemLayout="horizontal"
+      renderItem={props => <Comment {...props} />}
+    />
+    );
 
-  if (productError) return <div>failed to load</div>
-  // if (product == undefined) return <div>loading...</div>
+    const Editor = useCallback(({ onChange, onSubmit, submitting, value }) => (
+    <>
+      <Form.Item>
+        <TextArea rows={2} onChange={onChange} value={value} />
+      </Form.Item>
+      <Form.Item>
+        <Button htmlType="submit" loading={submitting} onClick={onSubmit} type="primary">
+          Add Comment
+        </Button>
+      </Form.Item>
+    </>
+    ),[]);
 
-  // const CommentList = ({ comments }) => (
-  // <List
-  //   dataSource={comments}
-  //   header={`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`}
-  //   itemLayout="horizontal"
-  //   renderItem={props => <Comment {...props} />}
-  // />
-  // );
+    const handleSubmit = (e) => {
+      if (!value) {
+        return;
+      }
+      e.preventDefault();
+      setSubmitting(true);
+      // setTimeout(() => {
+      //   setComments([...comments,{
+      //         author: userData.nickname,
+      //         email: gravatar.url(userData.email, { s: '28px', d: 'retro' }),
+      //         content: <p>{value}</p>,
+      //         datetime: dayjs().format('YYYY-MM-DD'),
+      //         // productId : productId
+      //       }]);
+      //   setSubmitting(false);
+      //   setValue('');
+      // }, 1000);
+      axios
+        .post(
+          '/api/comments',
+          {
+              author: userData.nickname,
+              email: userData.email,
+              content: value,
+              datetime: dayjs().format('YYYY-MM-DD'),
+              productId : productId
+            },
+          {
+            withCredentials: true,
+          },
+        )
+        .then(() => {
+          revalidateComment();
+          setSubmitting(false);
+          setValue('');
+          // setComments(commentData);
+        })
+        .catch((error) => {
+          console.log(error.response);
+          // setLogInError(error.response?.status === 401);
+        });
+    };
 
-  // const Editor = ({ onChange, onSubmit, submitting, value }) => (
-  // <>
-  //   <Form.Item>
-  //     <TextArea rows={4} onChange={onChange} value={value} />
-  //   </Form.Item>
-  //   <Form.Item>
-  //     <Button htmlType="submit" loading={submitting} onClick={onSubmit} type="primary">
-  //       Add Comment
-  //     </Button>
-  //   </Form.Item>
-  // </>
-  // );
-
-  //   handleSubmit = () => {
-  //   if (!this.state.value) {
-  //     return;
-  //   }
-
-  //   this.setState({
-  //     submitting: true,
-  //   });
-
-  //   setTimeout(() => {
-  //     this.setState({
-  //       submitting: false,
-  //       value: '',
-  //       comments: [
-  //         ...this.state.comments,
-  //         {
-  //           author: 'Han Solo',
-  //           avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-  //           content: <p>{this.state.value}</p>,
-  //           datetime: moment().fromNow(),
-  //         },
-  //       ],
-  //     });
-  //   }, 1000);
-  // };
-
-  // handleChange = e => {
-  //   this.setState({
-  //     value: e.target.value,
-  //   });
-  // };
+    const handleChange = e => {
+      setValue(e.target.value);
+    };
 
   return (
     <div>
@@ -173,43 +205,23 @@ const Product = () => {
               rootProps={{ 'data-testid': `${productInfo.length}` }}
               />
           <div>
-            {/* <CommentForm >
-              <List
-                header={`${post.Comments.length}個の更新`}
-                itemLayout="horizontal"
-                dataSource={post.Comments}
-                renderItem={(item) => {
-                  <li>
-                    <Comment
-                      author={item.User.nickname} 
-
-                    />
-
-                  </li>
-                }}
-              >
-                
-              </List>
-            </CommentForm> */}
-            {/* <>
             {comments.length > 0 && <CommentList comments={comments} />}
             <Comment
               avatar={
                 <Avatar
-                  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                  alt="Han Solo"
+                  src={gravatar.url(userData.email, { s: '28px', d: 'retro' })} 
+                  alt={userData.nickname} 
                 />
               }
               content={
                 <Editor
-                  onChange={this.handleChange}
-                  onSubmit={this.handleSubmit}
+                  onChange={handleChange}
+                  onSubmit={handleSubmit}
                   submitting={submitting}
                   value={value}
                 />
               }
             />
-          </> */}
           </div>
         </Container>)}
       <ToastContainer t="bottom-center" />

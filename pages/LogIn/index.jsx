@@ -34,13 +34,13 @@ const LogIn = () => {
     [email, password],
   );
 
-  console.log("userData", userData);
-  console.log("error", error);
+  // console.log("userData", userData);
+  // console.log("error", error);
 
   if (userData == undefined) return <div>loading...</div>
 
   if (!error && userData) {
-    console.log('ログイン', userData);
+    // console.log('ログイン', userData);
     return <Redirect to="/products" />;
   }
 

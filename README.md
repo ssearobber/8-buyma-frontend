@@ -9,4 +9,4 @@ ant디자인 추가
 [ant디자인 참고](https://ant.design/components/overview/)
 
 2021/05/17  
-게시글, 댓글 추가
+댓글 추가

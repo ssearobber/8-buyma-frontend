@@ -4,9 +4,9 @@ import {Form} from 'antd';
 const CommentForm = () => {
 
   return (
-    <Form>
+    <div>
       예시
-    </Form>
+    </div>
   );
 };
 
