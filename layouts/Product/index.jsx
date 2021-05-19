@@ -75,18 +75,9 @@ const Product = () => {
     }, [product]);
     useEffect(() => {
       if (commentData?.length > 0) {
-          console.log("commentData1", commentData);
-          console.log("productId1", productId);
-          console.log("comments1", comments);
           setComments(commentData);
-          console.log("commentData3", commentData);
-          console.log("productId3", productId);
-          console.log("comments3", comments);
       }
     }, [commentData]);
-    console.log("commentData2", commentData);
-    console.log("productId2", productId);
-    console.log("comments2", comments);
 
     if (loginError || !userData) {
       return <Redirect to="/login" />;
