@@ -114,17 +114,6 @@ const Product = () => {
       }
       e.preventDefault();
       setSubmitting(true);
-      // setTimeout(() => {
-      //   setComments([...comments,{
-      //         author: userData.nickname,
-      //         email: gravatar.url(userData.email, { s: '28px', d: 'retro' }),
-      //         content: <p>{value}</p>,
-      //         datetime: dayjs().format('YYYY-MM-DD'),
-      //         // productId : productId
-      //       }]);
-      //   setSubmitting(false);
-      //   setValue('');
-      // }, 1000);
       axios
         .post(
           '/api/comments',
@@ -143,11 +132,9 @@ const Product = () => {
           revalidateComment();
           setSubmitting(false);
           setValue('');
-          // setComments(commentData);
         })
         .catch((error) => {
           console.log(error.response);
-          // setLogInError(error.response?.status === 401);
         });
     };
 
