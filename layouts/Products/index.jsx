@@ -72,14 +72,15 @@ const Products = () => {
       <Product>
         {products?.map((p)=>{
           const latest = dayjs(p.today).format('YYYY-MM-DD');
-          if (p.access < 10) {
+          if (p.access < 5) {
             return <Link key={p.productId} to={`/product/${p.productId}`} style={{ textDecoration: 'none', color: 'gray'}}><div>{p.productId} {p.productName} {latest} {p.cart} {p.wish} {p.access}</div></Link>;
+          } else if (p.access < 10) {
+            return <Link key={p.productId} to={`/product/${p.productId}`} style={{ textDecoration: 'none', color: 'skyblue'}}><div>{p.productId} {p.productName} {latest} {p.cart} {p.wish} {p.access}</div></Link>;
           } else if(p.access < 50) {
             return <Link key={p.productId} to={`/product/${p.productId}`} style={{ textDecoration: 'none', color: 'blue'}}><div>{p.productId} {p.productName} {latest} {p.cart} {p.wish} {p.access}</div></Link>;
           } else {
             return <Link key={p.productId} to={`/product/${p.productId}`} style={{ textDecoration: 'none', color: 'red'}}><div>{p.productId} {p.productName} {latest} {p.cart} {p.wish} {p.access}</div></Link>;
           }
-           
         })}
       </Product>
       <ToastContainer t="bottom-center" />
