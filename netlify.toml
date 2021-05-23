@@ -5,7 +5,7 @@
 
 [[redirects]]
   from = "/products"
-  to = "https://relaxed-northcutt-53ebbd.netlify.app/"
+  to = "/api/products"
   status = 200
 
 [[redirects]]
