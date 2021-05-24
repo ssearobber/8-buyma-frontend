@@ -4,12 +4,12 @@
   status = 200
 
 [[redirects]]
-  from = "/products"
+  from = "/login"
   to = "https://relaxed-northcutt-53ebbd.netlify.app/products/"
   status = 200
 
 [[redirects]]
-  from = "/product"
+  from = "/login"
   to = "https://relaxed-northcutt-53ebbd.netlify.app/product/"
   status = 200
 
