@@ -1,19 +1,6 @@
+# Always redirect any request to our index.html
+# and return the status code 200.
 [[redirects]]
-  from = "/login"
-  to = "https://buyma.netlify.app/"
-  status = 200
-
-[[redirects]]
-  from = "/products"
-  to = "https://buyma.netlify.app/products/"
-  status = 200
-
-[[redirects]]
-  from = "/product"
-  to = "https://buyma.netlify.app/product/"
-  status = 200
-
-[[redirects]]
-  from = "/signup"
-  to = "https://buyma.netlify.app/signup"
-  status = 200
+    from    = "/*"
+    to      = "/index.html"
+    status  = 200
