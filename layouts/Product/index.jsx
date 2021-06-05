@@ -26,10 +26,10 @@ const Product = () => {
     const params = useParams();
     const { productId } = params;
     const { data: userData, error: loginError, revalidate: revalidateUser } = useSWR('/api/users', fetcher);
-    const { data: product, error: productError} = useSWR(`/api/product/${productId}`, fetcher);
+    const { data: product, error: productError} = useSWR(`/api/product/${productId}`, fetcher); // 버튼 링크를 가져오기 위한 취득
     const { data: commentData, error, revalidate: revalidateComment } = useSWR(`/api/comments/${productId}`, fetcher);
     const [showUserMenu, setShowUserMenu] = useState(false);
-    let [productInfo, setProductInfo] = useState([['Day','cart','wish','access']]);
+    let [productInfo, setProductInfo] = useState([['Day','cart','wish','access']]); // 그래프 표시
     let productArray = [];
     
     const [comments, setComments] = useState([]);
@@ -167,7 +167,7 @@ const Product = () => {
       </Header>
       {productInfo.length != [] && product && (
         <Container>
-          <Button type="primary" onClick={() => window.open(`${product[7].link}`, '_blank')}>go to buyma</Button>
+          <Button type="primary" onClick={() => window.open(`${product[Object.keys(product).length -1].link}`, '_blank')}>go to buyma</Button>
               <Chart
               width={'100%'}
               height={'90vh'}
