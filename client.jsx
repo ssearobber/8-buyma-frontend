@@ -7,8 +7,8 @@ import App from './layouts/App';
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL =
-  // process.env.NODE_ENV === 'production' ? 'https://buyma-backend.herokuapp.com' : 'http://localhost:3095';
-  process.env.NODE_ENV === 'production' ? 'https://buyma-backend.herokuapp.com' : 'https://buyma-backend.herokuapp.com';
+  process.env.NODE_ENV === 'production' ? 'https://buyma-backend.herokuapp.com' : 'http://localhost:3095';
+  // process.env.NODE_ENV === 'production' ? 'https://buyma-backend.herokuapp.com' : 'https://buyma-backend.herokuapp.com';
 console.log('env', process.env.NODE_ENV === 'production');
 render(
   <BrowserRouter>

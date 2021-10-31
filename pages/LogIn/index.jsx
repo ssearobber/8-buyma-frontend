@@ -34,11 +34,10 @@ const LogIn = () => {
     [email, password],
   );
 
-  // console.log("userData", userData);
+  console.log("userData", userData);
   // console.log("error", error);
 
   if (userData == undefined) return <div>loading...</div>
-
   if (!error && userData) {
     // console.log('ログイン', userData);
     return <Redirect to="/products" />;
@@ -65,7 +64,8 @@ const LogIn = () => {
       </Form>
       <LinkContainer>
         まだ会員ではないですか?&nbsp;
-        <a href="/signup" style={{"pointerEvents" : "none", "textDecoration" : "line-through"}}>会員登録しに行く。</a>
+        {/* <a href="/signup" style={{"pointerEvents" : "none", "textDecoration" : "line-through"}}>会員登録しに行く。</a> */}
+        <a href="/signup">会員登録しに行く。</a>
       </LinkContainer>
     </div>
   );
