@@ -56,7 +56,7 @@ const Product = () => {
         for (let i = 0 ; i < product.length ; i ++) {
             let result_array = [];
             Object.keys(product[i]).map(function (key) {
-                if (key == "productId" || key == "productName" || key == "link") {
+                if (key == "buyma_product_id" || key == "buyma_product_name" || key == "link") {
                     return;
                 }
                 if (key == "today") {
@@ -176,8 +176,8 @@ const Product = () => {
               loader={<div>Loading Chart</div>}
               options={{
                   chart: {
-                  title: `${product[0].productName}`,
-                  subtitle: `${product[0].productId}`,
+                  title: `${product[0].buyma_product_name}`,
+                  subtitle: `${product[0].buyma_product_id}`,
                   },
               }}
               rootProps={{ 'data-testid': `${productInfo.length}` }}
