@@ -34,7 +34,7 @@ const LogIn = () => {
     [email, password],
   );
 
-  console.log("userData", userData);
+  // console.log("userData", userData);
   // console.log("error", error);
 
   if (userData == undefined) return <div>loading...</div>
