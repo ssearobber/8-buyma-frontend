@@ -51,8 +51,8 @@ const Products = () => {
     <div id="container">
       <Header>
         <Tab>
-          <span>products</span>
-          <span>image editing</span>
+          <Link to={'/products'}><span>products</span></Link>
+          <Link to={'/imageEdit'}><span>imageEdit</span></Link>
           <span>sheet add</span>
         </Tab>
         {userData && (
