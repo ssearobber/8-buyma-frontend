@@ -36,9 +36,9 @@ const Products = () => {
     return <Redirect to="/login" />;
   }
   // console.log("products",products);
-  console.dir('productsError', productsError);
   if (productsError) return <Error>{String(productsError)}</Error>;
   if (products == undefined) return <Loading>loading...</Loading>;
+  if (products == '500') return <Loading>db에 데이터가 없음.</Loading>;
 
   return (
     <div id="container">
