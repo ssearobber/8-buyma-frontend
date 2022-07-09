@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import useSWR from 'swr';
 import dayjs from 'dayjs';
 
-import { Header, LogOutButton, ProfileImg, ProfileModal, RightMenu, Product, Tab } from './styles';
+import { Header, LogOutButton, ProfileImg, ProfileModal, RightMenu, Product, Tab, Loading, Error } from './styles';
 
 const Products = () => {
   const { data: userData, error: loginError, revalidate: revalidateUser } = useSWR('/api/users', fetcher);
@@ -38,12 +38,12 @@ const Products = () => {
   // console.log("products",products);
   if (productsError)
     return (
-      <div>
+      <Error>
         <div>failed to load</div>
         <div>{String(productsError)}</div>
-      </div>
+      </Error>
     );
-  if (products == undefined) return <div>loading...</div>;
+  if (products == undefined) return <Loading>loading...</Loading>;
 
   return (
     <div id="container">

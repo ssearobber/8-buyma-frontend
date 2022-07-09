@@ -64,9 +64,9 @@ export const Product = styled.div`
   justify-content: center;
   & div {
     &:hover {
-    cursor: pointer;
-    color: red;
-  }
+      cursor: pointer;
+      color: red;
+    }
   }
 `;
 
@@ -79,8 +79,24 @@ export const Tab = styled.div`
   & span {
     margin-left: 1em;
     &:hover {
-    cursor: pointer;
-    color: red;
+      cursor: pointer;
+      color: red;
+    }
   }
-  }
+`;
+
+export const Loading = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: large;
+  font-weight: 800;
+`;
+
+export const Error = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: large;
+  font-weight: 800;
 `;
