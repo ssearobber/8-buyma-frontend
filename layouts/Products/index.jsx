@@ -36,13 +36,7 @@ const Products = () => {
     return <Redirect to="/login" />;
   }
   // console.log("products",products);
-  if (productsError)
-    return (
-      <Error>
-        <div>failed to load</div>
-        <div>{String(productsError)}</div>
-      </Error>
-    );
+  if (productsError) return <Error>{String(productsError)}</Error>;
   if (products == undefined) return <Loading>loading...</Loading>;
 
   return (
