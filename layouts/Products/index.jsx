@@ -9,19 +9,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import useSWR from 'swr';
 import dayjs from 'dayjs';
 
-import {
-  Header,
-  LogOutButton,
-  ProfileImg,
-  ProfileModal,
-  RightMenu,
-  Product,
-  Tab
-} from './styles';
+import { Header, LogOutButton, ProfileImg, ProfileModal, RightMenu, Product, Tab } from './styles';
 
 const Products = () => {
   const { data: userData, error: loginError, revalidate: revalidateUser } = useSWR('/api/users', fetcher);
-  const { data: products, error: productsError} = useSWR('/api/products', fetcher);
+  const { data: products, error: productsError } = useSWR('/api/products', fetcher);
   const [showUserMenu, setShowUserMenu] = useState(false);
 
   const onLogOut = useCallback(() => {
@@ -44,15 +36,25 @@ const Products = () => {
     return <Redirect to="/login" />;
   }
   // console.log("products",products);
-  if (productsError) return <div>failed to load</div>
-  if (products == undefined) return <div>loading...</div>
+  if (productsError)
+    return (
+      <>
+        <div>failed to load</div>
+        <div>productsError</div>
+      </>
+    );
+  if (products == undefined) return <div>loading...</div>;
 
   return (
     <div id="container">
       <Header>
         <Tab>
-          <Link to={'/products'}><span>products</span></Link>
-          <Link to={'/imageEdit'}><span>imageEdit</span></Link>
+          <Link to={'/products'}>
+            <span>products</span>
+          </Link>
+          <Link to={'/imageEdit'}>
+            <span>imageEdit</span>
+          </Link>
           <span>sheet add</span>
         </Tab>
         {userData && (
@@ -76,16 +78,56 @@ const Products = () => {
         )}
       </Header>
       <Product>
-        {products?.map((p)=>{
+        {products?.map((p) => {
           const latest = dayjs(p.today).format('YYYY-MM-DD');
           if (p.access < 5) {
-            return <Link key={p.buyma_product_id} to={`/product/${p.buyma_product_id}`} style={{ textDecoration: 'none', color: 'gray'}}><div>{p.buyma_product_id} {p.buyma_product_name} {latest} {p.cart} {p.wish} {p.access}</div></Link>;
+            return (
+              <Link
+                key={p.buyma_product_id}
+                to={`/product/${p.buyma_product_id}`}
+                style={{ textDecoration: 'none', color: 'gray' }}
+              >
+                <div>
+                  {p.buyma_product_id} {p.buyma_product_name} {latest} {p.cart} {p.wish} {p.access}
+                </div>
+              </Link>
+            );
           } else if (p.access < 10) {
-            return <Link key={p.buyma_product_id} to={`/product/${p.buyma_product_id}`} style={{ textDecoration: 'none', color: 'skyblue'}}><div>{p.buyma_product_id} {p.buyma_product_name} {latest} {p.cart} {p.wish} {p.access}</div></Link>;
-          } else if(p.access < 50) {
-            return <Link key={p.buyma_product_id} to={`/product/${p.buyma_product_id}`} style={{ textDecoration: 'none', color: 'blue'}}><div>{p.buyma_product_id} {p.buyma_product_name} {latest} {p.cart} {p.wish} {p.access}</div></Link>;
+            return (
+              <Link
+                key={p.buyma_product_id}
+                to={`/product/${p.buyma_product_id}`}
+                style={{ textDecoration: 'none', color: 'skyblue' }}
+              >
+                <div>
+                  {p.buyma_product_id} {p.buyma_product_name} {latest} {p.cart} {p.wish} {p.access}
+                </div>
+              </Link>
+            );
+          } else if (p.access < 50) {
+            return (
+              <Link
+                key={p.buyma_product_id}
+                to={`/product/${p.buyma_product_id}`}
+                style={{ textDecoration: 'none', color: 'blue' }}
+              >
+                <div>
+                  {p.buyma_product_id} {p.buyma_product_name} {latest} {p.cart} {p.wish} {p.access}
+                </div>
+              </Link>
+            );
           } else {
-            return <Link key={p.buyma_product_id} to={`/product/${p.buyma_product_id}`} style={{ textDecoration: 'none', color: 'red'}}><div>{p.buyma_product_id} {p.buyma_product_name} {latest} {p.cart} {p.wish} {p.access}</div></Link>;
+            return (
+              <Link
+                key={p.buyma_product_id}
+                to={`/product/${p.buyma_product_id}`}
+                style={{ textDecoration: 'none', color: 'red' }}
+              >
+                <div>
+                  {p.buyma_product_id} {p.buyma_product_name} {latest} {p.cart} {p.wish} {p.access}
+                </div>
+              </Link>
+            );
           }
         })}
       </Product>
