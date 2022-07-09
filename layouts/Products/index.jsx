@@ -40,7 +40,7 @@ const Products = () => {
     return (
       <>
         <div>failed to load</div>
-        <div>productsError</div>
+        <div>{productsError}</div>
       </>
     );
   if (products == undefined) return <div>loading...</div>;
