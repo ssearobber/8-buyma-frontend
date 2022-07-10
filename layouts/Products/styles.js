@@ -100,3 +100,15 @@ export const Error = styled.div`
   font-size: large;
   font-weight: 800;
 `;
+
+export const UserInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  & div {
+    &:hover {
+      cursor: pointer;
+      color: blue;
+    }
+  }
+`;

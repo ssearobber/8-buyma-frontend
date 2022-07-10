@@ -9,7 +9,18 @@ import 'react-toastify/dist/ReactToastify.css';
 import useSWR from 'swr';
 import dayjs from 'dayjs';
 
-import { Header, LogOutButton, ProfileImg, ProfileModal, RightMenu, Product, Tab, Loading, Error } from './styles';
+import {
+  Header,
+  LogOutButton,
+  ProfileImg,
+  ProfileModal,
+  RightMenu,
+  Product,
+  Tab,
+  Loading,
+  Error,
+  UserInfo,
+} from './styles';
 
 const Products = () => {
   const { data: userData, error: loginError, revalidate: revalidateUser } = useSWR('/api/users', fetcher);
@@ -45,7 +56,7 @@ const Products = () => {
       <Header>
         <Tab>
           <Link to={'/products'}>
-            <span>products</span>
+            <span>my products</span>
           </Link>
           <Link to={'/imageEdit'}>
             <span>imageEdit</span>
@@ -72,6 +83,7 @@ const Products = () => {
           </RightMenu>
         )}
       </Header>
+      <UserInfo>my home link</UserInfo>
       <Product>
         {products?.map((p) => {
           const latest = dayjs(p.today).format('YYYY-MM-DD');
