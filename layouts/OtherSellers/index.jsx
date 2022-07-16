@@ -21,10 +21,9 @@ import {
   Error,
   UserInfo,
 } from './styles';
-
-const Products = () => {
+const OtherSellers = () => {
   const { data: userData, error: loginError, revalidate: revalidateUser } = useSWR('/api/users', fetcher);
-  const { data: products, error: productsError } = useSWR('/api/products', fetcher);
+  //   const { data: products, error: productsError } = useSWR('/api/products', fetcher);
   const [showUserMenu, setShowUserMenu] = useState(false);
 
   const onLogOut = useCallback(() => {
@@ -47,8 +46,8 @@ const Products = () => {
     return <Redirect to="/login" />;
   }
   // console.log("products",products);
-  if (productsError) return <Error>{String(productsError)}</Error>;
-  if (products == undefined) return <Loading>loading...</Loading>;
+  //   if (productsError) return <Error>{String(productsError)}</Error>;
+  //   if (products == undefined) return <Loading>loading...</Loading>;
   // if (products == '500') return <Loading>db에 데이터가 없음.</Loading>;
 
   return (
@@ -82,64 +81,24 @@ const Products = () => {
           </RightMenu>
         )}
       </Header>
-      <UserInfo>my home link</UserInfo>
-      <Product>
-        {products?.map((p) => {
-          const latest = dayjs(p.today).format('YYYY-MM-DD');
-          if (p.access < 5) {
-            return (
-              <Link
-                key={p.buyma_product_id}
-                to={`/product/${p.buyma_product_id}`}
-                style={{ textDecoration: 'none', color: 'gray' }}
-              >
-                <div>
-                  {p.buyma_product_id} {p.buyma_product_name} {latest} {p.cart} {p.wish} {p.access}
-                </div>
-              </Link>
-            );
-          } else if (p.access < 10) {
-            return (
-              <Link
-                key={p.buyma_product_id}
-                to={`/product/${p.buyma_product_id}`}
-                style={{ textDecoration: 'none', color: 'skyblue' }}
-              >
-                <div>
-                  {p.buyma_product_id} {p.buyma_product_name} {latest} {p.cart} {p.wish} {p.access}
-                </div>
-              </Link>
-            );
-          } else if (p.access < 50) {
-            return (
-              <Link
-                key={p.buyma_product_id}
-                to={`/product/${p.buyma_product_id}`}
-                style={{ textDecoration: 'none', color: 'blue' }}
-              >
-                <div>
-                  {p.buyma_product_id} {p.buyma_product_name} {latest} {p.cart} {p.wish} {p.access}
-                </div>
-              </Link>
-            );
-          } else {
-            return (
-              <Link
-                key={p.buyma_product_id}
-                to={`/product/${p.buyma_product_id}`}
-                style={{ textDecoration: 'none', color: 'red' }}
-              >
-                <div>
-                  {p.buyma_product_id} {p.buyma_product_name} {latest} {p.cart} {p.wish} {p.access}
-                </div>
-              </Link>
-            );
-          }
-        })}
-      </Product>
+      <div>
+        <select>
+          <option key="banana" value="banana">
+            바나나
+          </option>
+          <option key="apple" value="apple">
+            사과
+          </option>
+          <option key="orange" value="orange">
+            오렌지
+          </option>
+        </select>
+      </div>
+      <UserInfo>other sellers home link</UserInfo>
+
       <ToastContainer t="bottom-center" />
     </div>
   );
 };
 
-export default Products;
+export default OtherSellers;

@@ -111,3 +111,10 @@ export const LinkContainer = styled.p`
     }
   }
 `;
+export const Loading = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: large;
+  font-weight: 800;
+`;

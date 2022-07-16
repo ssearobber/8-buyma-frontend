@@ -1,5 +1,5 @@
 import useInput from '@hooks/useInput';
-import { Button, Error, Form, Header, Input, Label, LinkContainer } from '@pages/SignUp/styles';
+import { Button, Error, Form, Header, Input, Label, LinkContainer, Loading } from '@pages/SignUp/styles';
 import fetcher from '@utils/fetcher';
 import axios from 'axios';
 import React, { useCallback, useState } from 'react';
@@ -37,7 +37,7 @@ const LogIn = () => {
   // console.log("userData", userData);
   // console.log("error", error);
 
-  if (userData == undefined) return <div>loading...</div>
+  if (userData == undefined) return <Loading>loading...</Loading>;
   if (!error && userData) {
     // console.log('ログイン', userData);
     return <Redirect to="/products" />;

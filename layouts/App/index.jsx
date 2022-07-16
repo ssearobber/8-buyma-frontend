@@ -7,7 +7,7 @@ const Products = loadable(() => import('@layouts/Products'));
 const Product = loadable(() => import('@layouts/Product'));
 const LogIn = loadable(() => import('@pages/LogIn'));
 const SignUp = loadable(() => import('@pages/SignUp'));
-const ImageEdit = loadable(() => import('@layouts/ImageEdit'));
+const OtherSellers = loadable(() => import('@layouts/OtherSellers'));
 
 const App = () => (
   <Switch>
@@ -18,7 +18,7 @@ const App = () => (
     <Route path="/signup" component={SignUp} />
     <Route path="/products" component={Products} />
     <Route path="/product/:productId" component={Product} />
-    <Route path="/imageEdit" component={ImageEdit} />
+    <Route path="/otherSellers" component={OtherSellers} />
   </Switch>
 );
 
