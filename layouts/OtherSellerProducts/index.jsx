@@ -21,11 +21,12 @@ import {
   Error,
   UserInfo,
 } from './styles';
-
-const Products = () => {
+const OtherSellerProducts = () => {
   const { data: userData, error: loginError, revalidate: revalidateUser } = useSWR('/api/users', fetcher);
-  const { data: products, error: productsError } = useSWR('/api/products', fetcher);
+  const { data: otherSellersData, error: otherSellersError } = useSWR('/api/otherSellers', fetcher);
+  //   const { data: products, error: productsError } = useSWR('/api/products', fetcher);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [otherSellersProductData, setOtherSellersProductData] = useState([]);
 
   const onLogOut = useCallback(() => {
     axios
@@ -43,12 +44,36 @@ const Products = () => {
     setShowUserMenu((prev) => !prev);
   }, []);
 
+  // const handleChange = useCallback((event) => {
+  //   console.log(event.target.value);
+  //   let { data: otherSellersProductData, error: otherSellersProductError } = useSWR(
+  //     '/api/otherSellers/' + event.target.value,
+  //     fetcher,
+  //   );
+  //   setOtherSellersProductData(otherSellersProductData);
+  // }, []);
+  const handleChange = useCallback(
+    (event) => {
+      axios
+        .get('/api/otherSellers/' + event.target.value)
+        .then((res) => {
+          setOtherSellersProductData(res.data);
+        })
+        .catch((error) => {
+          console.dir(error);
+          toast.error(error.response?.data, { position: 'bottom-center' });
+        });
+    },
+    [otherSellersProductData],
+  );
+
   if (loginError || !userData) {
     return <Redirect to="/login" />;
   }
-  // console.log("products",products);
-  if (productsError) return <Error>{String(productsError)}</Error>;
-  if (products == undefined) return <Loading>loading...</Loading>;
+  // console.log('otherSellersData', otherSellersData);
+  // console.log('otherSellersProductData', otherSellersProductData);
+  // if (otherSellersDataError) return <Error>{String(productsError)}</Error>;
+  if (otherSellersData == undefined) return <Loading>loading...</Loading>;
   // if (products == '500') return <Loading>db에 데이터가 없음.</Loading>;
 
   return (
@@ -82,55 +107,69 @@ const Products = () => {
           </RightMenu>
         )}
       </Header>
-      <UserInfo>my home link</UserInfo>
+      <div>
+        <select onChange={(e) => handleChange(e)}>
+          <option key="nothing" value="nothing">
+            선택해주세요
+          </option>
+          {otherSellersData?.map((otherSeller, index) => {
+            return (
+              <option key={index + '_'} value={otherSeller.buyma_user_id}>
+                {otherSeller.buyma_user_name}
+              </option>
+            );
+          })}
+        </select>
+      </div>
+      <UserInfo>other sellers home link</UserInfo>
       <Product>
-        {products?.map((p) => {
+        {otherSellersProductData?.map((p, index) => {
           const latest = dayjs(p.today).format('YYYY-MM-DD');
           if (p.access < 5) {
             return (
               <Link
-                key={p.buyma_product_id}
-                to={`/product/${p.buyma_product_id}`}
+                key={index + '_'}
+                to={`/otherSeller-product/${p.buyma_product_id}`}
                 style={{ textDecoration: 'none', color: 'gray' }}
               >
                 <div>
-                  {p.buyma_product_id} {p.buyma_product_name} {latest} {p.cart} {p.wish} {p.access}
+                  {p.buyma_product_id} {p.buyma_product_name} {latest} {p.wish} {p.access}
                 </div>
               </Link>
             );
           } else if (p.access < 10) {
             return (
               <Link
-                key={p.buyma_product_id}
-                to={`/product/${p.buyma_product_id}`}
+                key={index + '_'}
+                to={`/otherSeller-product/${p.buyma_product_id}`}
                 style={{ textDecoration: 'none', color: 'skyblue' }}
               >
                 <div>
-                  {p.buyma_product_id} {p.buyma_product_name} {latest} {p.cart} {p.wish} {p.access}
+                  {p.buyma_product_id} {p.buyma_product_name} {latest} {p.wish} {p.access}
                 </div>
               </Link>
             );
           } else if (p.access < 50) {
             return (
               <Link
-                key={p.buyma_product_id}
-                to={`/product/${p.buyma_product_id}`}
+                key={index + '_'}
+                to={`/otherSeller-product/${p.buyma_product_id}`}
                 style={{ textDecoration: 'none', color: 'blue' }}
               >
                 <div>
-                  {p.buyma_product_id} {p.buyma_product_name} {latest} {p.cart} {p.wish} {p.access}
+                  {p.buyma_product_id} {p.buyma_product_name} {latest} {p.wish} {p.access}
                 </div>
               </Link>
             );
           } else {
             return (
               <Link
-                key={p.buyma_product_id}
-                to={`/product/${p.buyma_product_id}`}
+                key={index + '_'}
+                to={`/otherSeller-product/${p.buyma_product_id}`}
                 style={{ textDecoration: 'none', color: 'red' }}
               >
                 <div>
-                  {p.buyma_product_id} {p.buyma_product_name} {latest} {p.cart} {p.wish} {p.access}
+                  {p.buyma_product_id} {p.buyma_product_name} {latest} {p.wish} {p.access}
                 </div>
               </Link>
             );
@@ -142,4 +181,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default OtherSellerProducts;

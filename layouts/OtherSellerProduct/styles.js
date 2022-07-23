@@ -7,6 +7,7 @@ export const RightMenu = styled.div`
 export const Header = styled.header`
   height: 38px;
   background: white;
+  color: #ffffff;
   box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.1);
   padding: 5px;
   text-align: center;
@@ -57,58 +58,6 @@ export const LogOutButton = styled.button`
   cursor: pointer;
 `;
 
-export const Product = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  & div {
-    &:hover {
-      cursor: pointer;
-      color: red;
-    }
-  }
-`;
-
-export const Tab = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: large;
-  font-weight: 500;
-  & span {
-    margin-left: 1em;
-    &:hover {
-      cursor: pointer;
-      color: red;
-    }
-  }
-`;
-
-export const Loading = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: large;
-  font-weight: 800;
-`;
-
-export const Error = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: large;
-  font-weight: 800;
-`;
-
-export const UserInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  & div {
-    &:hover {
-      cursor: pointer;
-      color: blue;
-    }
-  }
+export const Container = styled.div`
+  padding: 15px;
 `;

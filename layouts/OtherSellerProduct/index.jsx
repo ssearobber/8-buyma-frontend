@@ -15,14 +15,18 @@ const { TextArea } = Input;
 
 import { Header, LogOutButton, ProfileImg, ProfileModal, RightMenu, Container } from './styles';
 
-const Product = () => {
+const OtherSellerProduct = () => {
   const params = useParams();
   const { productId } = params;
   const { data: userData, error: loginError, revalidate: revalidateUser } = useSWR('/api/users', fetcher);
-  const { data: product, error: productError } = useSWR(`/api/product/${productId}`, fetcher); // 버튼 링크를 가져오기 위한 취득
-  const { data: commentData, error, revalidate: revalidateComment } = useSWR(`/api/comments/${productId}`, fetcher);
+  const { data: otherSellerProduct, error: productError } = useSWR(`/api/otherSeller-product/${productId}`, fetcher); // 버튼 링크를 가져오기 위한 취득
+  const {
+    data: commentData,
+    error,
+    revalidate: revalidateComment,
+  } = useSWR(`/api/otherSeller-comments/${productId}`, fetcher);
   const [showUserMenu, setShowUserMenu] = useState(false);
-  let [productInfo, setProductInfo] = useState([['Day', 'cart', 'wish', 'access']]); // 그래프 표시
+  let [productInfo, setProductInfo] = useState([['Day', 'wish', 'access']]); // 그래프 표시
   let productArray = [];
 
   const [comments, setComments] = useState([]);
@@ -45,27 +49,28 @@ const Product = () => {
     setShowUserMenu((prev) => !prev);
   }, []);
 
-  if (product) {
-    for (let i = 0; i < product.length; i++) {
+  if (otherSellerProduct) {
+    for (let i = 0; i < otherSellerProduct.length; i++) {
       let result_array = [];
-      Object.keys(product[i]).map(function (key) {
+      Object.keys(otherSellerProduct[i]).map(function (key) {
         if (key == 'buyma_product_id' || key == 'buyma_product_name' || key == 'link') {
           return;
         }
         if (key == 'today') {
-          result_array.push(dayjs(product[i][key]).format('YYYY-MM-DD'));
+          result_array.push(dayjs(otherSellerProduct[i][key]).format('YYYY-MM-DD'));
           return;
         }
-        result_array.push(product[i][key]);
+        result_array.push(otherSellerProduct[i][key]);
       });
       productArray.push(result_array);
     }
   }
+
   useEffect(() => {
-    if (product) {
+    if (otherSellerProduct) {
       setProductInfo((pre) => [...pre, ...productArray]);
     }
-  }, [product]);
+  }, [otherSellerProduct]);
   useEffect(() => {
     if (commentData?.length > 0) {
       setComments(commentData);
@@ -87,7 +92,7 @@ const Product = () => {
     />
   );
 
-  const Editor = useCallback(
+  let OtherSellerEditor = useCallback(
     ({ onChange, onSubmit, submitting, value }) => (
       <>
         <Form.Item>
@@ -111,7 +116,7 @@ const Product = () => {
     setSubmitting(true);
     axios
       .post(
-        '/api/comments',
+        '/api/otherSeller-comments',
         {
           author: userData.nickname,
           email: userData.email,
@@ -160,11 +165,13 @@ const Product = () => {
           </RightMenu>
         )}
       </Header>
-      {productInfo.length != [] && product && (
+      {productInfo.length != [] && otherSellerProduct && (
         <Container>
           <Button
             type="primary"
-            onClick={() => window.open(`${product[Object.keys(product).length - 1].link}`, '_blank')}
+            onClick={() =>
+              window.open(`${otherSellerProduct[Object.keys(otherSellerProduct).length - 1].link}`, '_blank')
+            }
           >
             go to buyma
           </Button>
@@ -176,8 +183,8 @@ const Product = () => {
             loader={<div>Loading Chart</div>}
             options={{
               chart: {
-                title: `${product[0].buyma_product_name}`,
-                subtitle: `${product[0].buyma_product_id}`,
+                title: `${otherSellerProduct[0].buyma_product_name}`,
+                subtitle: `${otherSellerProduct[0].buyma_product_id}`,
               },
             }}
             rootProps={{ 'data-testid': `${productInfo.length}` }}
@@ -186,7 +193,14 @@ const Product = () => {
             {comments.length > 0 && <CommentList comments={comments} />}
             <Comment
               avatar={<Avatar src={gravatar.url(userData.email, { s: '28px', d: 'retro' })} alt={userData.nickname} />}
-              content={<Editor onChange={handleChange} onSubmit={handleSubmit} submitting={submitting} value={value} />}
+              content={
+                <OtherSellerEditor
+                  onChange={handleChange}
+                  onSubmit={handleSubmit}
+                  submitting={submitting}
+                  value={value}
+                />
+              }
             />
           </div>
         </Container>
@@ -196,4 +210,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default OtherSellerProduct;
