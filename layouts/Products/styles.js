@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 export const RightMenu = styled.div`
   float: right;
@@ -110,5 +111,11 @@ export const UserInfo = styled.div`
       cursor: pointer;
       color: blue;
     }
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  &:visited {
+    color: black;
   }
 `;

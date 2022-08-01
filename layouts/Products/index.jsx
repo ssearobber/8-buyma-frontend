@@ -20,6 +20,7 @@ import {
   Loading,
   Error,
   UserInfo,
+  StyledLink,
 } from './styles';
 
 const Products = () => {
@@ -88,7 +89,7 @@ const Products = () => {
           const latest = dayjs(p.today).format('YYYY-MM-DD');
           if (p.access < 5) {
             return (
-              <Link
+              <StyledLink
                 key={p.buyma_product_id}
                 to={`/product/${p.buyma_product_id}`}
                 style={{ textDecoration: 'none', color: 'gray' }}
@@ -96,7 +97,7 @@ const Products = () => {
                 <div>
                   {p.buyma_product_id} {p.buyma_product_name} {latest} {p.cart} {p.wish} {p.access}
                 </div>
-              </Link>
+              </StyledLink>
             );
           } else if (p.access < 10) {
             return (
