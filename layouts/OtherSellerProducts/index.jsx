@@ -122,7 +122,8 @@ const OtherSellerProducts = () => {
         </select>
       </div>
       <UserInfo>
-        스케쥴 동작 시간: 1.heroku서버시간 Daily at 3:00 PM UTC ~ Daily at 7:30 PM UTC , 2.일본동작시간 : 매일 저녁 11시{' '}
+        스케쥴 동작 시간: 1.heroku서버시간 Daily at 3:00 PM UTC ~ Daily at 7:30 PM UTC , 2.일본동작시간 : 매일 저녁 0시
+        ~ 4:30분
       </UserInfo>
       <Product>
         {otherSellersProductData.length == 0 ? (
