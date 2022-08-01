@@ -121,7 +121,9 @@ const OtherSellerProducts = () => {
           })}
         </select>
       </div>
-      <UserInfo>other sellers home link</UserInfo>
+      <UserInfo>
+        스케쥴 동작 시간: 1.heroku서버시간 Daily at 3:00 PM UTC ~ Daily at 7:30 PM UTC , 2.일본동작시간 : 매일 저녁 11시{' '}
+      </UserInfo>
       <Product>
         {otherSellersProductData.length == 0 ? (
           <div>데이터가 없습니다.</div>
