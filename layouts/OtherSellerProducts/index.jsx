@@ -8,6 +8,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useSWR from 'swr';
 import dayjs from 'dayjs';
+import useHistoryState from '@hooks/useHistoryState';
 
 import {
   Header,
@@ -26,7 +27,9 @@ const OtherSellerProducts = () => {
   const { data: otherSellersData, error: otherSellersError } = useSWR('/api/otherSellers', fetcher);
   //   const { data: products, error: productsError } = useSWR('/api/products', fetcher);
   const [showUserMenu, setShowUserMenu] = useState(false);
-  const [otherSellersProductData, setOtherSellersProductData] = useState([]);
+  const [otherSeller, setOtherSeller] = useHistoryState('', 'otherSeller');
+  const [otherSellersProductData, setOtherSellersProductData] = useHistoryState([], 'useHistoryotherSellers');
+  const [loading, setLoading] = useState(false);
 
   const onLogOut = useCallback(() => {
     axios
@@ -52,20 +55,19 @@ const OtherSellerProducts = () => {
   //   );
   //   setOtherSellersProductData(otherSellersProductData);
   // }, []);
-  const handleChange = useCallback(
-    (event) => {
-      axios
-        .get('/api/otherSellers/' + event.target.value)
-        .then((res) => {
-          setOtherSellersProductData(res.data);
-        })
-        .catch((error) => {
-          console.dir(error);
-          toast.error(error.response?.data, { position: 'bottom-center' });
-        });
-    },
-    [otherSellersProductData],
-  );
+  const handleChange = useCallback((event) => {
+    setOtherSeller(event.target.value);
+
+    axios
+      .get('/api/otherSellers/' + event.target.value)
+      .then((res) => {
+        setOtherSellersProductData(res.data);
+      })
+      .catch((error) => {
+        console.dir(error);
+        toast.error(error.response?.data, { position: 'bottom-center' });
+      });
+  }, []);
 
   if (loginError || !userData) {
     return <Redirect to="/login" />;
@@ -74,6 +76,8 @@ const OtherSellerProducts = () => {
   // console.log('otherSellersProductData', otherSellersProductData);
   // if (otherSellersDataError) return <Error>{String(productsError)}</Error>;
   if (otherSellersData == undefined) return <Loading>loading...</Loading>;
+  if (loading) return <Loading>loading...</Loading>;
+  setLoading(false);
   // if (products == '500') return <Loading>db에 데이터가 없음.</Loading>;
 
   return (
@@ -108,7 +112,7 @@ const OtherSellerProducts = () => {
         )}
       </Header>
       <div>
-        <select onChange={(e) => handleChange(e)}>
+        <select value={otherSeller} onChange={(e) => handleChange(e)}>
           <option key="nothing" value="nothing">
             선택해주세요
           </option>
@@ -122,8 +126,8 @@ const OtherSellerProducts = () => {
         </select>
       </div>
       <UserInfo>
-        스케쥴 동작 시간: 1.heroku서버시간 Daily at 3:00 PM UTC ~ Daily at 7:30 PM UTC , 2.일본동작시간 : 매일 저녁 0시
-        ~ 4:30분
+        스케쥴 동작 시간: 1.heroku서버시간 Daily at 6:00 PM UTC ~ Daily at 10:30 PM UTC , 2.일본동작시간 : 매일 새벽 3시
+        ~ 7:30분
       </UserInfo>
       <Product>
         {otherSellersProductData.length == 0 ? (
