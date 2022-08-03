@@ -55,19 +55,22 @@ const OtherSellerProducts = () => {
   //   );
   //   setOtherSellersProductData(otherSellersProductData);
   // }, []);
-  const handleChange = useCallback((event) => {
-    setOtherSeller(event.target.value);
+  const handleChange = useCallback(
+    (event) => {
+      setOtherSeller(event.target.value);
 
-    axios
-      .get('/api/otherSellers/' + event.target.value)
-      .then((res) => {
-        setOtherSellersProductData(res.data);
-      })
-      .catch((error) => {
-        console.dir(error);
-        toast.error(error.response?.data, { position: 'bottom-center' });
-      });
-  }, []);
+      axios
+        .get('/api/otherSellers/' + event.target.value)
+        .then((res) => {
+          setOtherSellersProductData(res.data);
+        })
+        .catch((error) => {
+          console.dir(error);
+          toast.error(error.response?.data, { position: 'bottom-center' });
+        });
+    },
+    [otherSellersProductData],
+  );
 
   if (loginError || !userData) {
     return <Redirect to="/login" />;
