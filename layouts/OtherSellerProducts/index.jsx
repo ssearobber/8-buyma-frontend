@@ -79,8 +79,8 @@ const OtherSellerProducts = () => {
   // console.log('otherSellersProductData', otherSellersProductData);
   // if (otherSellersDataError) return <Error>{String(productsError)}</Error>;
   if (otherSellersData == undefined) return <Loading>loading...</Loading>;
-  if (loading) return <Loading>loading...</Loading>;
-  setLoading(false);
+  // if (loading) return <Loading>loading...</Loading>;
+  // setLoading(false);
   // if (products == '500') return <Loading>db에 데이터가 없음.</Loading>;
 
   return (
