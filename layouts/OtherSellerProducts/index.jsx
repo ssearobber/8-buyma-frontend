@@ -137,8 +137,8 @@ const OtherSellerProducts = () => {
           <div>데이터가 없습니다.</div>
         ) : (
           otherSellersProductData?.map((p, index) => {
-            const latest = dayjs(p.today).format('YYYY-MM-DD');
-            if (p.access < 5) {
+            const latest = dayjs(p.OtherSellerProductTodayCount.today).format('YYYY-MM-DD');
+            if (p.OtherSellerProductTodayCount.access < 5) {
               return (
                 <Link
                   key={index + '_'}
@@ -146,11 +146,14 @@ const OtherSellerProducts = () => {
                   style={{ textDecoration: 'none', color: 'gray' }}
                 >
                   <div>
-                    {p.buyma_product_id} {p.buyma_product_name} {latest} {p.wish} {p.access}
+                    {p.buyma_product_id} {p.buyma_product_name} {'total : '}
+                    {p.wish} {p.access} / {latest}
+                    {' : '}
+                    {p.OtherSellerProductTodayCount.wish} {p.OtherSellerProductTodayCount.access}
                   </div>
                 </Link>
               );
-            } else if (p.access < 10) {
+            } else if (p.OtherSellerProductTodayCount.access < 10) {
               return (
                 <Link
                   key={index + '_'}
@@ -158,11 +161,14 @@ const OtherSellerProducts = () => {
                   style={{ textDecoration: 'none', color: 'skyblue' }}
                 >
                   <div>
-                    {p.buyma_product_id} {p.buyma_product_name} {latest} {p.wish} {p.access}
+                    {p.buyma_product_id} {p.buyma_product_name} {'total : '}
+                    {p.wish} {p.access} / {latest}
+                    {' : '}
+                    {p.OtherSellerProductTodayCount.wish} {p.OtherSellerProductTodayCount.access}
                   </div>
                 </Link>
               );
-            } else if (p.access < 50) {
+            } else if (p.OtherSellerProductTodayCount.access < 50) {
               return (
                 <Link
                   key={index + '_'}
@@ -170,7 +176,10 @@ const OtherSellerProducts = () => {
                   style={{ textDecoration: 'none', color: 'blue' }}
                 >
                   <div>
-                    {p.buyma_product_id} {p.buyma_product_name} {latest} {p.wish} {p.access}
+                    {p.buyma_product_id} {p.buyma_product_name} {'total : '}
+                    {p.wish} {p.access} / {latest}
+                    {' : '}
+                    {p.OtherSellerProductTodayCount.wish} {p.OtherSellerProductTodayCount.access}
                   </div>
                 </Link>
               );
@@ -182,7 +191,10 @@ const OtherSellerProducts = () => {
                   style={{ textDecoration: 'none', color: 'red' }}
                 >
                   <div>
-                    {p.buyma_product_id} {p.buyma_product_name} {latest} {p.wish} {p.access}
+                    {p.buyma_product_id} {p.buyma_product_name} {'total : '}
+                    {p.wish} {p.access} / {latest}
+                    {' : '}
+                    {p.OtherSellerProductTodayCount.wish} {p.OtherSellerProductTodayCount.access}
                   </div>
                 </Link>
               );

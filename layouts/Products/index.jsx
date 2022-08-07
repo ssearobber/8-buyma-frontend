@@ -86,8 +86,8 @@ const Products = () => {
       <UserInfo>스케쥴 동작 시간: 1.heroku서버시간 Daily at 2:00 PM UTC , 2.일본동작시간 : 매일 저녁 11시 </UserInfo>
       <Product>
         {products?.map((p) => {
-          const latest = dayjs(p.today).format('YYYY-MM-DD');
-          if (p.access < 5) {
+          const latest = dayjs(p.TodayCount.today).format('YYYY-MM-DD');
+          if (p.TodayCount.access < 5) {
             return (
               <StyledLink
                 key={p.buyma_product_id}
@@ -95,11 +95,14 @@ const Products = () => {
                 style={{ textDecoration: 'none', color: 'gray' }}
               >
                 <div>
-                  {p.buyma_product_id} {p.buyma_product_name} {latest} {p.cart} {p.wish} {p.access}
+                  {p.buyma_product_id} {p.buyma_product_name} {'total : '}
+                  {p.cart} {p.wish} {p.access} / {latest}
+                  {' : '}
+                  {p.TodayCount.cart} {p.TodayCount.wish} {p.TodayCount.access}
                 </div>
               </StyledLink>
             );
-          } else if (p.access < 10) {
+          } else if (p.TodayCount.access < 10) {
             return (
               <Link
                 key={p.buyma_product_id}
@@ -107,11 +110,14 @@ const Products = () => {
                 style={{ textDecoration: 'none', color: 'skyblue' }}
               >
                 <div>
-                  {p.buyma_product_id} {p.buyma_product_name} {latest} {p.cart} {p.wish} {p.access}
+                  {p.buyma_product_id} {p.buyma_product_name} {'total : '}
+                  {p.cart} {p.wish} {p.access} / {latest}
+                  {' : '}
+                  {p.TodayCount.cart} {p.TodayCount.wish} {p.TodayCount.access}
                 </div>
               </Link>
             );
-          } else if (p.access < 50) {
+          } else if (p.TodayCount.access < 50) {
             return (
               <Link
                 key={p.buyma_product_id}
@@ -119,7 +125,10 @@ const Products = () => {
                 style={{ textDecoration: 'none', color: 'blue' }}
               >
                 <div>
-                  {p.buyma_product_id} {p.buyma_product_name} {latest} {p.cart} {p.wish} {p.access}
+                  {p.buyma_product_id} {p.buyma_product_name} {'total : '}
+                  {p.cart} {p.wish} {p.access} / {latest}
+                  {' : '}
+                  {p.TodayCount.cart} {p.TodayCount.wish} {p.TodayCount.access}
                 </div>
               </Link>
             );
@@ -131,7 +140,10 @@ const Products = () => {
                 style={{ textDecoration: 'none', color: 'red' }}
               >
                 <div>
-                  {p.buyma_product_id} {p.buyma_product_name} {latest} {p.cart} {p.wish} {p.access}
+                  {p.buyma_product_id} {p.buyma_product_name} {'total : '}
+                  {p.cart} {p.wish} {p.access} / {latest}
+                  {' : '}
+                  {p.TodayCount.cart} {p.TodayCount.wish} {p.TodayCount.access}
                 </div>
               </Link>
             );
