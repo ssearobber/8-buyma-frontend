@@ -83,7 +83,7 @@ const Products = () => {
           </RightMenu>
         )}
       </Header>
-      <UserInfo>스케쥴 동작 시간: 1.heroku서버시간 Daily at 2:00 PM UTC , 2.일본동작시간 : 매일 저녁 11시 </UserInfo>
+      <UserInfo>스케쥴 동작 시간: 1.heroku서버시간 Daily at 4:00 AM UTC , 2.일본동작시간 : 매일 오후 1시 </UserInfo>
       <Product>
         {products?.map((p) => {
           const latest = dayjs(p.TodayCount.today).format('YYYY-MM-DD');

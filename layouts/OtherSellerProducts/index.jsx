@@ -128,10 +128,7 @@ const OtherSellerProducts = () => {
           })}
         </select>
       </div>
-      <UserInfo>
-        스케쥴 동작 시간: 1.heroku서버시간 Daily at 6:00 PM UTC ~ Daily at 10:30 PM UTC , 2.일본동작시간 : 매일 새벽 3시
-        ~ 7:30분
-      </UserInfo>
+      <UserInfo>스케쥴 동작 시간: 1.heroku서버시간 Daily at 6:00 AM UTC , 2.일본동작시간 : 매일 오후 3시</UserInfo>
       <Product>
         {otherSellersProductData.length == 0 ? (
           <div>데이터가 없습니다.</div>
@@ -149,7 +146,10 @@ const OtherSellerProducts = () => {
                     {p.buyma_product_id} {p.buyma_product_name} {'total : '}
                     {p.wish} {p.access} / {latest}
                     {' : '}
-                    {p.OtherSellerProductTodayCount.wish} {p.OtherSellerProductTodayCount.access}
+                    {p.OtherSellerProductTodayCount.wish} {p.OtherSellerProductTodayCount.access} /{' '}
+                    {p.Comments?.map((comment, index) => {
+                      return comment.content;
+                    })}
                   </div>
                 </Link>
               );
@@ -164,7 +164,10 @@ const OtherSellerProducts = () => {
                     {p.buyma_product_id} {p.buyma_product_name} {'total : '}
                     {p.wish} {p.access} / {latest}
                     {' : '}
-                    {p.OtherSellerProductTodayCount.wish} {p.OtherSellerProductTodayCount.access}
+                    {p.OtherSellerProductTodayCount.wish} {p.OtherSellerProductTodayCount.access} /{' '}
+                    {p.Comments?.map((comment, index) => {
+                      return comment.content;
+                    })}
                   </div>
                 </Link>
               );
@@ -179,7 +182,10 @@ const OtherSellerProducts = () => {
                     {p.buyma_product_id} {p.buyma_product_name} {'total : '}
                     {p.wish} {p.access} / {latest}
                     {' : '}
-                    {p.OtherSellerProductTodayCount.wish} {p.OtherSellerProductTodayCount.access}
+                    {p.OtherSellerProductTodayCount.wish} {p.OtherSellerProductTodayCount.access} /{' '}
+                    {p.Comments?.map((comment, index) => {
+                      return comment.content;
+                    })}
                   </div>
                 </Link>
               );
@@ -194,7 +200,10 @@ const OtherSellerProducts = () => {
                     {p.buyma_product_id} {p.buyma_product_name} {'total : '}
                     {p.wish} {p.access} / {latest}
                     {' : '}
-                    {p.OtherSellerProductTodayCount.wish} {p.OtherSellerProductTodayCount.access}
+                    {p.OtherSellerProductTodayCount.wish} {p.OtherSellerProductTodayCount.access} /{' '}
+                    {p.Comments?.map((comment, index) => {
+                      return comment.content;
+                    })}
                   </div>
                 </Link>
               );
