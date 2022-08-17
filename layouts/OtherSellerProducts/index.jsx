@@ -131,7 +131,9 @@ const OtherSellerProducts = () => {
       <UserInfo>스케쥴 동작 시간: 1.heroku서버시간 Daily at 6:00 AM UTC , 2.일본동작시간 : 매일 오후 3시</UserInfo>
       <UserInfo>
         {' '}
-        gray : access &lt; 5 , skyblue : access &lt; 10 , blue : access &lt; 50 , red : access &gt; 50{' '}
+        <span style={{ color: 'gray' }}>gray</span> : access &lt; 5 , <span style={{ color: 'skyblue' }}>skyblue</span>{' '}
+        : access &lt; 10 , <span style={{ color: 'blue' }}>blue</span> : access &lt; 50 ,
+        <span style={{ color: 'red' }}>red</span> : access &gt; 50{' '}
       </UserInfo>
       <UserInfo>{otherSellersProductData?.length ? '총 갯수 : ' + otherSellersProductData.length : ''}</UserInfo>
       <Product>
