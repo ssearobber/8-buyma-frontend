@@ -84,6 +84,10 @@ const Products = () => {
         )}
       </Header>
       <UserInfo>스케쥴 동작 시간: 1.heroku서버시간 Daily at 4:00 AM UTC , 2.일본동작시간 : 매일 오후 1시 </UserInfo>
+      <UserInfo>
+        {' '}
+        gray : access &lt; 5 , skyblue : access &lt; 10 , blue : access &lt; 50 , red : access &gt; 50{' '}
+      </UserInfo>
       <UserInfo>{products?.length ? '총 갯수 : ' + products.length : ''}</UserInfo>
       <Product>
         {products?.map((p) => {

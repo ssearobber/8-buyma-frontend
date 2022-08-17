@@ -129,6 +129,10 @@ const OtherSellerProducts = () => {
         </select>
       </div>
       <UserInfo>스케쥴 동작 시간: 1.heroku서버시간 Daily at 6:00 AM UTC , 2.일본동작시간 : 매일 오후 3시</UserInfo>
+      <UserInfo>
+        {' '}
+        gray : access &lt; 5 , skyblue : access &lt; 10 , blue : access &lt; 50 , red : access &gt; 50{' '}
+      </UserInfo>
       <UserInfo>{otherSellersProductData?.length ? '총 갯수 : ' + otherSellersProductData.length : ''}</UserInfo>
       <Product>
         {otherSellersProductData.length == 0 ? (
