@@ -132,10 +132,10 @@ const OtherSellerProducts = () => {
       <div>
         {' '}
         <span style={{ color: 'gray' }}>gray</span> : access &lt; 5 , <span style={{ color: 'skyblue' }}>skyblue</span>{' '}
-        : access &lt; 10 , <span style={{ color: 'blue' }}>blue</span> : access &lt; 50 ,
+        : 5 &lt; access &lt; 10 , <span style={{ color: 'blue' }}>blue</span> : 10 &lt;access &lt; 50 ,{' '}
         <span style={{ color: 'red' }}>red</span> : access &gt; 50{' '}
       </div>
-      <UserInfo>{otherSellersProductData?.length ? '총 갯수 : ' + otherSellersProductData.length : ''}</UserInfo>
+      <UserInfo>{otherSellersProductData?.length ? 'total count : ' + otherSellersProductData.length : ''}</UserInfo>
       <Product>
         {otherSellersProductData.length == 0 ? (
           <div>데이터가 없습니다.</div>

@@ -87,10 +87,10 @@ const Products = () => {
       <div>
         {' '}
         <span style={{ color: 'gray' }}>gray</span> : access &lt; 5 , <span style={{ color: 'skyblue' }}>skyblue</span>{' '}
-        : access &lt; 10 , <span style={{ color: 'blue' }}>blue</span> : access &lt; 50 ,
+        : 5 &lt; access &lt; 10 , <span style={{ color: 'blue' }}>blue</span> : 10 &lt;access &lt; 50 ,{' '}
         <span style={{ color: 'red' }}>red</span> : access &gt; 50{' '}
       </div>
-      <UserInfo>{products?.length ? '총 갯수 : ' + products.length : ''}</UserInfo>
+      <UserInfo>{products?.length ? 'total count : ' + products.length : ''}</UserInfo>
       <Product>
         {products?.map((p) => {
           const latest = dayjs(p.TodayCount.today).format('YYYY-MM-DD');
