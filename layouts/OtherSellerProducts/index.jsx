@@ -154,7 +154,7 @@ const OtherSellerProducts = () => {
                     {p.wish} {p.access} / {latest}
                     {' : '}
                     {p.OtherSellerProductTodayCount.wish} {p.OtherSellerProductTodayCount.access}{' '}
-                    {p.Comments?.length ? ' ⇨ ' : ''}
+                    {p.Comments?.length ? ' ⏩ ' : ''}
                     {p.Comments?.map((comment, index) => {
                       return comment.content;
                     })}
@@ -173,7 +173,7 @@ const OtherSellerProducts = () => {
                     {p.wish} {p.access} / {latest}
                     {' : '}
                     {p.OtherSellerProductTodayCount.wish} {p.OtherSellerProductTodayCount.access}{' '}
-                    {p.Comments?.length ? ' ⇨ ' : ''}
+                    {p.Comments?.length ? ' ⏩ ' : ''}
                     {p.Comments?.map((comment, index) => {
                       return comment.content;
                     })}
@@ -192,7 +192,7 @@ const OtherSellerProducts = () => {
                     {p.wish} {p.access} / {latest}
                     {' : '}
                     {p.OtherSellerProductTodayCount.wish} {p.OtherSellerProductTodayCount.access}{' '}
-                    {p.Comments?.length ? ' ⇨ ' : ''}
+                    {p.Comments?.length ? ' ⏩ ' : ''}
                     {p.Comments?.map((comment, index) => {
                       return comment.content;
                     })}
@@ -211,7 +211,7 @@ const OtherSellerProducts = () => {
                     {p.wish} {p.access} / {latest}
                     {' : '}
                     {p.OtherSellerProductTodayCount.wish} {p.OtherSellerProductTodayCount.access}{' '}
-                    {p.Comments?.length ? ' ⇨ ' : ''}
+                    {p.Comments?.length ? ' ⏩ ' : ''}
                     {p.Comments?.map((comment, index) => {
                       return comment.content;
                     })}
